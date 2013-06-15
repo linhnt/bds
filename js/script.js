@@ -10,6 +10,10 @@ $(document).ready(function(){
   $('#myTab a').click(function(e) {
     e.preventDefault();
     $(this).tab('show');
+    if (map) {
+      removeMarkers();
+      $('.list-markers').empty();
+    }
   })
 })
 
@@ -65,7 +69,9 @@ function addMarker(location){
 
 function removeMarkers(){
   for (i in markerArray){
-    markerArray[i].setMap(null)
+    if (markerArray[i] != null){
+      markerArray[i].setMap(null)
+    }
   }
   markerArray.length = 0;
   markerPosArray.length = 0;
