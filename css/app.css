@@ -1,0 +1,61 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map-canvas, #map_canvas {
+  height: 100%;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map-canvas, #map_canvas {
+    height: 650px;
+  }
+}
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+#map-canvas img { 
+  max-width: none;
+}
+
+#map-canvas label { 
+  width: auto; display:inline; 
+} 
+
+.panel{
+	position: absolute;
+	width: 300px;
+	top: 60px;
+	right: 7px;
+	bottom: 22px;
+	background: #fff;
+	border: 1px solid #eee;
+	box-shadow: 0 0 5px #ddd;
+	-webkit-box-shadow: 0 0 5px #ddd;
+	overflow: hidden;
+}
+.panel .header{
+	margin: 0;
+	height: 36px;
+	background: #357ae8;
+	color: white;
+	line-height: 36px;
+	padding-left: 5px;
+	margin-bottom: 15px;
+}
+.panel .content ul li{list-style: none !important}
