@@ -19,7 +19,6 @@ $(document).ready(function(){
 
     if (map) {
       removeMarkers();
-      removeRectangles();
       $('.list-markers').empty();
     }
   })
@@ -127,11 +126,8 @@ function removeMarkers(){
   markerArray.length = 0;
   markerPosArray.length = 0;
   countMarker = 0;
-  if (curTab == '#func1'){
-    removeRectangles();
-  } else {
-    showPolygon(markerPosArray);
-  }
+  removeRectangles();
+  showPolygon(markerPosArray);
   return false;
 }
 
