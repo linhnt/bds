@@ -7,6 +7,10 @@ var countMarker = 0;
 $(document).ready(function(){
   initialize();
   enableSelectable();
+  $('#myTab a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
 })
 
 function initialize(){
@@ -43,7 +47,7 @@ function showPolygon(posArray){
 }
 
 function addToList(pos, count){
-  var html = '<li class="marker-' + countMarker + '">' + countMarker + '.  ' + Math.round(pos.lat() * 1000000)/1000000 + ', ' + Math.round(pos.lng() * 1000000)/1000000 + ' <a href="#" onclick="return removeMarker(' + count + ')">remove</a></li>';
+  var html = '<li class="marker-' + countMarker + '">' + countMarker + '.  ' + Math.round(pos.lat() * 1000000)/1000000 + ',' + Math.round(pos.lng() * 1000000)/1000000 + ' <a href="javascript:void(0)" onclick="return removeMarker(' + count + ')">remove</a></li>';
   $('.list-markers').append(html);
 }
 
@@ -66,18 +70,27 @@ function removeMarkers(){
   markerArray.length = 0;
   markerPosArray.length = 0;
   countMarker = 0;
-  poly.setMap(null);
+  showPolygon(markerPosArray);
   return false;
 }
 
 function removeMarker(iMarker){
   if (markerArray.length != 0){
     markerArray[iMarker - 1].setMap(null);
-    markerArray.splice(iMarker - 1, 1);
-    markerPosArray.splice(iMarker - 1, 1);
+    markerArray[iMarker - 1] = null;
+    updatePosArray();
     $('.marker-' + iMarker).remove();
     showPolygon(markerPosArray);
     return true
   }
   return false
+}
+
+function updatePosArray(){
+  markerPosArray.length = 0;
+  for (i in markerArray){
+    if (markerArray[i] != null){
+      markerPosArray.push(new google.maps.LatLng(markerArray[i].getPosition().lat(), markerArray[i].getPosition().lng()));
+    }
+  }
 }
