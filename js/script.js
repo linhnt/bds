@@ -5,10 +5,10 @@ var markerPosArray = new Array();
 var rectangleArray = new Array();
 var countMarker = 0;
 var curTab = '#func1';
-var markerImage;
+var markerIcon;
 
-$(document).ready(function(){
-  initialize();
+$(document).ready(function() {
+  initializeMap();
   enableSelectable();
 
   $('#myTab a').click(function(e) {
@@ -22,9 +22,9 @@ $(document).ready(function(){
       $('.list-markers').empty();
     }
   })
-})
+});
 
-function initialize(){
+function initializeMap() {
   var mapOptions = {
     zoom: 13,
     center: new google.maps.LatLng(21.033333, 105.85),
@@ -41,27 +41,26 @@ function initialize(){
   );
 }
 
-function enableSelectable(){
+function enableSelectable() {
   google.maps.event.addListener(map, 'click', function(event) {
-    switch (curTab){
-    case '#func1':
+    var isAuto = $('input[name="auto-select"]').is(':checked');
+
+    if (isAuto) {
       var size = prompt("Enter size of overlay:", "20, 20");
       if (size){
         addMarker(event.latLng);
         addToList(event.latLng, countMarker);
         addRectangle(event.latLng, size);
       }
-      break;
-    case '#func2':
+    } else {
       addMarker(event.latLng);
       addToList(event.latLng, countMarker);
       showPolygon(markerPosArray);
-      break;
     }
   });
 }
 
-function addRectangle(pos, size){
+function addRectangle(pos, size) {
   var size = size.split(",");
   if (isNaN(parseInt(size[0]))) size[0] = 20;
   if (isNaN(parseInt(size[1]))) size[1] = 20;
@@ -83,7 +82,7 @@ function addRectangle(pos, size){
     rectangleArray.push(rectangle);
 }
 
-function showPolygon(posArray){
+function showPolygon(posArray) {
   if (!poly){
     poly = new google.maps.Polygon({
       paths: posArray,
@@ -99,9 +98,9 @@ function showPolygon(posArray){
   }
 }
 
-function addToList(pos, count){
-  var html = '<li class="marker-' + countMarker + '">' + countMarker + '.  ' + Math.round(pos.lat() * 1000000)/1000000 + ',' + Math.round(pos.lng() * 1000000)/1000000 + ' <a href="javascript:void(0)" onclick="return removeMarker(' + count + ')">remove</a></li>';
-  $(curTab + ' .list-markers').append(html);
+function addToList(pos, count) {
+  var html = '<tr id="' + countMarker + '"><td>' + countMarker + '</td><td>' + Math.round(pos.lat() * 1000000)/1000000 + ',' + Math.round(pos.lng() * 1000000)/1000000 + '</td><td><a class="btn btn-danger" href="javascript:void(0)" onclick="return removeMarker(' + count + ')">xóa</a></td></tr>';
+  $(' .list-area').append(html);
 }
 
 function addMarker(location){
@@ -117,9 +116,9 @@ function addMarker(location){
   return true;
 }
 
-function removeMarkers(){
-  for (i in markerArray){
-    if (markerArray[i] != null){
+function removeMarkers() {
+  for (i in markerArray) {
+    if (markerArray[i] != null) {
       markerArray[i].setMap(null)
     }
   }
@@ -131,7 +130,7 @@ function removeMarkers(){
   return false;
 }
 
-function removeRectangles(){
+function removeRectangles() {
   for (i in rectangleArray){
     if (rectangleArray[i] != null){
       rectangleArray[i].setMap(null)
@@ -140,7 +139,7 @@ function removeRectangles(){
   rectangleArray.length = 0;
 }
 
-function removeMarker(iMarker){
+function removeMarker(iMarker) {
   if (markerArray.length != 0){
     markerArray[iMarker - 1].setMap(null);
     markerArray[iMarker - 1] = null;
@@ -158,7 +157,7 @@ function removeMarker(iMarker){
   return false
 }
 
-function updatePosArray(){
+function updatePosArray() {
   markerPosArray.length = 0;
   for (i in markerArray){
     if (markerArray[i] != null){

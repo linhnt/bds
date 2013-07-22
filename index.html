@@ -12,23 +12,31 @@
     <script src="js/script.js"></script>
   </head>
   <body>
-    <div id="map-canvas"></div>
-    <div class="panel">
-      <h4 class="header">Google maps select</h4>
-      <div class="content">
-        <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a href="#func1">Select</a></li>
-          <li><a href="#func2">Polygon</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="func1">
-            <ul class="list-markers"></ul>
-          </div>
-          <div class="tab-pane" id="func2">
-            <ul class="list-markers"></ul>
-          </div>
+    <div class="container">
+      <div class="panel">
+        <h4 class="header">LỰA CHỌN VÙNG</h4>
+        <div class="content">
+          <label class="checkbox" title="Tự động chọn vùng hình vuông với bán kính chọn trước">
+            <input type="checkbox" name="auto-select">Chọn vùng tự động 
+          </label>
+
+          <table class="table table-striped list-area" width="100%">
+            <tr>
+              <th width="15">STT</th>
+              <th>Vùng chọn</th>
+              <th width="30">Xóa</th>
+            </tr>
+          </table>
+
+          <!-- <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#func1">Select</a></li>
+            <li><a href="#func2">Polygon</a></li>
+          </ul> -->
+          <ul class="list-markers"></ul>
         </div>
       </div>
+
+      <div id="map-canvas"></div>
     </div>
   </body>
 </html>
