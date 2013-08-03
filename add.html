@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google maps select</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/add.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/add.js"></script>
+    <script src="js/live.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h4 class="header">Nhập Bất động sản mới</h4>
+        
+
+        <div class="content">
+	        <form>
+						<fieldset>
+							<legend>Thông tin cơ bản</legend>
+							
+							<label>Diện tích</label>
+							<input type="text" placeholder="diện tích">
+
+							<label>Chiều dài</label>
+							<input type="text" placeholder="chiều dài">
+
+							<label>Chiều rộng</label>
+							<input type="text" placeholder="chiều rộng">
+
+							<label>Chiều dài mặt đường</label>
+							<input type="text" placeholder="chiều dài mặt đường">
+
+							
+						</fieldset>
+
+						<fieldset>
+							<legend>Tọa độ<a class="btn btn-danger pull-right remove-area">Xóa hết</a></legend>
+							<label class="checkbox" title="Tự động chọn vùng hình vuông với bán kính chọn trước">
+			          <input type="checkbox" name="auto-select">Chọn vùng tự động 
+			          <span class="loader pull-right" style="display: none">Đang tải...</span>
+			        </label>
+							<div class="point-list" data-hint='<span class="help-block">Click lên bản đồ để khoanh vùng</span>'>
+								<span class="help-block">Click lên bản đồ để khoanh vùng</span>
+								<ol></ol>
+							</div>
+						</fieldset>
+
+						<hr>
+						<button type="submit" class="btn btn-primary">Tạo mới</button>
+					</form>
+				</div>
+      </div>
+
+      <div id="map-canvas"></div>
+    </div>
+  </body>
+</html>

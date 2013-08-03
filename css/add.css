@@ -14,7 +14,7 @@ html, body {
   height: 100%;
   position: absolute;
   right: 0;
-  left: 300px;
+  left: 400px;
   top: 0;
   bottom: 0;
   z-index: 1;
@@ -51,7 +51,7 @@ html, body {
 
 .panel{
 	position: absolute;
-	width: 300px;
+	width: 400px;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -72,24 +72,39 @@ html, body {
 	margin-bottom: 15px;
 	text-align: center;
 }
-
-.add-area{
-	position: absolute;
-	right: 5px;
-	top: 45px;
-}
+.panel>.label{margin-left: 10px}
 .panel .content{
+	padding: 10px;
 	position: absolute;
-	top: 84px;
+	top: 36px;
 	overflow: auto;
 	bottom: 0;
 	right: 0;
 	left: 0;
 }
-.panel .content ul li{list-style: none !important}
-.panel .separator{
-	height: 1px;
-	width: auto;
-	background: #eee;
-	margin: 10px 0;
+
+/*
+ *  STYLE 2
+ */
+
+.panel::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
 }
+
+.panel::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.panel::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
+
+.remove-marker{margin-left: 10px; font-size: 0.8em}
